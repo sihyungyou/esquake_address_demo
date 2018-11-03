@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { MessageServiceProvider } from '../../providers/message-service/message-service';
+
 import { Http, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
@@ -11,26 +11,14 @@ import 'rxjs/add/operator/do';
 })
 export class HomePage {
 
-  // constructor(public navCtrl: NavController) {
-  // }
   Searchse : any = '';
   srchwrd : any = '';
   roads = [];
-  // constructor (private messageService : MessageServiceProvider) {
-  //   console.log('homepage');
-  //   this.getMessages();
-  // }
-
   constructor (private http : Http) {
-    // this.getMessages(this.Searchse, this.srchwrd);
+
     console.log('home');
   }
-  // getMessages() {
-  //   // 그리고 그 word를 넣어 여기에
-  //   console.log(this.Searchse);
-  //   console.log(this.srchwrd);
-  //   this.messageService.getMessages(this.Searchse, this.srchwrd).subscribe(data => console.log(data));
-  // }
+
   printroadconsole(par) {
     console.log(par);
   }
@@ -38,8 +26,8 @@ export class HomePage {
     this.roads = [];
     console.log('data passing')
     this.getMessages(this.Searchse, this.srchwrd).subscribe( (data) => {
-      console.log('only data');
-      console.log(data);
+      // console.log('only data');
+      // console.log(data);
       console.log('data body get newadress')
       console.log(JSON.parse(data['_body'])['NewAddressListResponse']['newAddressListAreaCd'])
       for (var _i = 0; _i < JSON.parse(data['_body'])['NewAddressListResponse']['newAddressListAreaCd'].length; _i++){
@@ -48,6 +36,7 @@ export class HomePage {
       }
     });
   }
+  //response data 받아오는 형식
   //Response _body
   // {"NewAddressListResponse":
   //   {"cmmMsgHeader":

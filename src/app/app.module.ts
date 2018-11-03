@@ -7,7 +7,7 @@ import { HttpModule } from '@angular/http';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { MessageServiceProvider } from '../providers/message-service/message-service';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +28,6 @@ import { MessageServiceProvider } from '../providers/message-service/message-ser
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    MessageServiceProvider
   ]
 })
 export class AppModule {}
