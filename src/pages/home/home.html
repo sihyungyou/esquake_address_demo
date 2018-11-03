@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      road address
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <!-- input 받는 텍스트 상자 하나 만들기 -->
+    <!-- user가 input 값 넣기 -->
+    <!-- 그 input을 ts로 넘기기 -->
+    <!-- url 에서 get한 body list up -->
+    searchSe: <input type="text" [(ngModel)]="Searchse"><br>
+    srchwrd: <input type="text" [(ngModel)]="srchwrd"><br>
+    <button (click)='datapassing()'>Search</button> 
+    <ion-item *ngFor="let road of roads" (click) = "printroadconsole(road)">
+      <h2>{{road}}</h2>
+    </ion-item>
+
+    
+</ion-content>
