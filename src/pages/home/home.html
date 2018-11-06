@@ -12,11 +12,21 @@
     <!-- 그 input을 ts로 넘기기 -->
     <!-- url 에서 get한 body list up -->
     searchSe: <input type="text" [(ngModel)]="Searchse"><br>
-    srchwrd: <input type="text" [(ngModel)]="srchwrd"><br>
-    <button (click)='datapassing()'>Search</button> 
+    srchwrd: <input type="text" [(ngModel)]="srchwrd"><br> 
+    <button (click)='datapassing()'>Search</button>
+    <button (click)='gototest()'>go to test page</button>
+    
+    <div *ngIf="nthflag">
+        <h2>찾으시는 주소가 없습니다.</h2>
+    </div>
+
+    <div *ngIf="recentflag">
+      <ion-item *ngFor="let recent of recents" (click) = "printroadconsole(road)">
+        <h2>{{recent}}</h2>
+      </ion-item>   
+    </div>
+
     <ion-item *ngFor="let road of roads" (click) = "printroadconsole(road)">
       <h2>{{road}}</h2>
     </ion-item>
-
-    
 </ion-content>
