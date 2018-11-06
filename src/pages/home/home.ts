@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ViewController } from 'ionic-angular';
 import { Http, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import { TestPage } from '../test/test';
-import { Body } from '@angular/http/src/body';
+// import { Body } from '@angular/http/src/body';
 
 @Component({
   selector: 'page-home',
@@ -17,11 +17,19 @@ export class HomePage {
   recents = [];
   recentflag : boolean = false;
   nthflag : boolean = false;
+  selectedaddress : string;
 
-  constructor (private http : Http, public navCtrl: NavController) {
+  constructor (private http : Http, public navCtrl: NavController, public viewCtrl: ViewController) {
     console.log('home');
   }
-  
+  setLocation(data) {
+    this.selectedaddress = data;
+    this.viewCtrl.dismiss(this.selectedaddress);
+  }
+  dismiss(){
+    this.viewCtrl.dismiss(this.selectedaddress);  
+  }
+
   // 다른 곳에서 homepage 들어올 때마다 실행되는 함수
   ionViewWillEnter() {
     // empty road array 안해주면 계속 전에 검색했던 주소들 다 프린트 됨

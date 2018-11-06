@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      road address
+      도로명 주소 찾기 (this is home page)
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -21,12 +21,12 @@
     </div>
 
     <div *ngIf="recentflag">
-      <ion-item *ngFor="let recent of recents" (click) = "printroadconsole(road)">
+      <ion-item *ngFor="let recent of recents">
         <h2>{{recent}}</h2>
       </ion-item>   
     </div>
 
-    <ion-item *ngFor="let road of roads" (click) = "printroadconsole(road)">
+    <ion-item *ngFor="let road of roads" (click)="setLocation(road)">
       <h2>{{road}}</h2>
     </ion-item>
 </ion-content>
