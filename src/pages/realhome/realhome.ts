@@ -16,6 +16,7 @@ import { HomePage } from '../home/home';
 })
 export class RealhomePage {
   title: string = 'title';
+
   constructor(public navCtrl: NavController, public modalCtrl : ModalController,) {
   }
   showModal(){

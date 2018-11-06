@@ -3,43 +3,47 @@ import { NavController, ViewController } from 'ionic-angular';
 import { Http, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
-import { TestPage } from '../test/test';
+// import { TestPage } from '../test/test';
 // import { Body } from '@angular/http/src/body';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
+
 export class HomePage {
-  Searchse : any = '';
+  Searchse : any = 'road';
   srchwrd : any = '';
-  roads = [];
-  recents = [];
-  recentflag : boolean = false;
-  nthflag : boolean = false;
-  selectedaddress : string;
+  roads = [];                     // 주소 검색 결과
+  recents = [];                   // 최근 검색 내역
+  recentflag : boolean = false;    // 최근 검색 내역이 없는 경우
+  searchflag : boolean = false;   // 검색 여부
+  nthflag : boolean = false;      // 찾는 주소 없을 경우
+  selectedaddress : string;       // user가 검색한 주소 선택한 경우
 
   constructor (private http : Http, public navCtrl: NavController, public viewCtrl: ViewController) {
-    console.log('home');
+    console.log('constructor');
+    console.log(this.recentflag);
+    // empty road array 안해주면 계속 전에 검색했던 주소들 다 프린트 됨
+    this.nthflag = false;
+    this.roads = [];
+    
+    // 여기서는 default 로 최근검색기록 확인, print
+    // console.log(this.recents.length);
+    // if (this.recents.length == 0) this.recentflag = false;
+    // else this.recentflag = true;
   }
   setLocation(data) {
     this.selectedaddress = data;
     this.viewCtrl.dismiss(this.selectedaddress);
   }
   dismiss(){
-    this.viewCtrl.dismiss(this.selectedaddress);  
+    this.viewCtrl.dismiss(this.selectedaddress);
   }
-
-  // 다른 곳에서 homepage 들어올 때마다 실행되는 함수
-  ionViewWillEnter() {
-    // empty road array 안해주면 계속 전에 검색했던 주소들 다 프린트 됨
-    this.nthflag = false;
-    this.roads = [];
-
-    // 여기서는 default 로 최근검색기록 확인, print
-    if (this.recents.length == 0) this.recentflag = false;
-    else this.recentflag = true;
-  }
+  
+  // ionViewWillEnter() {
+  //  다른 곳에서 homepage 들어올 때마다 실행되는 함수
+  // }
 
   datapassing(){
     // search 버튼 누르면 검색했다는 뜻 && datapassing() 실행
@@ -50,7 +54,6 @@ export class HomePage {
       if (this.recents[_j] == this.srchwrd) break;
     }
     if (_j == this.recents.length) this.recents.push(this.srchwrd)
-
 
     // recentflag 바꿔서 최근검색기록은 print 안되도록
     this.recentflag = false;
@@ -86,9 +89,9 @@ export class HomePage {
     });
   }
 
-  gototest() {
-    this.navCtrl.push(TestPage);
-  }
+  // gototest() {
+  //   this.navCtrl.push(TestPage);
+  // }
 
   getMessages(par1, par2) {
     console.log('get message');

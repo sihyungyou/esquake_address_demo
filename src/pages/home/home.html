@@ -13,8 +13,8 @@
     <!-- url 에서 get한 body list up -->
     searchSe: <input type="text" [(ngModel)]="Searchse"><br>
     srchwrd: <input type="text" [(ngModel)]="srchwrd"><br> 
-    <button (click)='datapassing()'>Search</button>
-    <button (click)='gototest()'>go to test page</button>
+    <button ion-button icon-only (click)='datapassing()'>Search</button>
+    <button ion-button icon-only (click)="dismiss()">dismiss</button>
     
     <div *ngIf="nthflag">
         <h2>찾으시는 주소가 없습니다.</h2>
